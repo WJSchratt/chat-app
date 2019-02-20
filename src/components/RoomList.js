@@ -6,29 +6,29 @@ class RoomList extends Component {
     super(props);
 
 
-    this.state = {
+    this.state = { //store list of rooms in array to be rendered
       rooms:[]
     };
 
-    this.roomsRef = this.props.firebase.database().ref('rooms');
+    this.roomsRef = this.props.firebase.database().ref('rooms'); //firebase reference, 'rooms' used to mainuplate data
   }
 
   componentDidMount() {
-     this.roomsRef.on('child_added', snapshot => {
-       const room = snapshot.val();
-       room.key = snapshot.key;
-       this.setState({ rooms: this.state.rooms.concat( room ) })
+     this.roomsRef.on('child_added', snapshot => { //calls upon every object from firebase reference
+       const room = snapshot.val();  //stores those objects
+       room.key = snapshot.key; //  need key for rendering
+       this.setState({ rooms: this.state.rooms.concat( room ) }) // set state to new array with concat
      });
    }
 
 
    render() {
-      const roomList = this.state.rooms.map((room) =>
+      const roomList = this.state.rooms.map((room) => // map data to name and key on to constant to be rendered
         <li key={room.key}>{room.name}</li>
       );
 
       return(
-        <h1>{roomList}</h1>
+        <h1>{roomList}</h1> // render constant
       );
   }
 }

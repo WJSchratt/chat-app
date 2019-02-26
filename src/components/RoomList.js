@@ -7,10 +7,13 @@ class RoomList extends Component {
 
 
     this.state = { //store list of rooms in array to be rendered
-      rooms:[]
+      rooms:[],
+      name:''
     };
 
-    this.roomsRef = this.props.firebase.database().ref('rooms'); //firebase reference, 'rooms' used to mainuplate data
+    this.roomsRef = this.props.firebase.database().ref('rooms'); ///firebase reference, 'rooms' used to mainuplate data
+    this.createRoom = this.createRoom.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount() {
@@ -21,14 +24,33 @@ class RoomList extends Component {
      });
    }
 
+  createRoom (e) {
+    e.preventDefault();
+    this.roomsRef.push({
+    name: this.state.name
+  });
+  }
+
+  handleChange (e) {
+  this.setState({ name: e.target.value })
+  }
+
+
 
    render() {
-      const roomList = this.state.rooms.map((room) => // map data to name and key on to constant to be rendered
-        <li key={room.key}>{room.name}</li>
-      );
 
       return(
-        <h1>{roomList}</h1> // render constant
+        <div>
+        <h1>{this.state.rooms.map((room) =>( // map data to name and key on to constant to be rendered
+          <li key={room.key}>{room.name}</li>))}
+        </h1>
+        <div>
+        <form onSubmit= {this.createRoom} >
+        <input type="text" value={this.state.name} placeholder="Please type a Word" onChange={this.handleChange}/>
+        <input type="submit" value="Lets do it " />
+        </form>
+        </div>
+        </div>
       );
   }
 }

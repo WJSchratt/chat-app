@@ -14,6 +14,7 @@ class RoomList extends Component {
     this.roomsRef = this.props.firebase.database().ref('rooms'); ///firebase reference, 'rooms' used to mainuplate data
     this.createRoom = this.createRoom.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.selectRoom = this.selectRoom.bind(this)
   }
 
   componentDidMount() {
@@ -35,14 +36,15 @@ class RoomList extends Component {
   this.setState({ name: e.target.value })
   }
 
+  selectRoom(room) {
+    this.props.activeRoom(room);
+  }
 
-
-   render() {
-
+   render() {   
       return(
         <div>
         <h1>{this.state.rooms.map((room) =>( // map data to name and key on to constant to be rendered
-          <li key={room.key}>{room.name}</li>))}
+          <li key={room.key} onClick={() => this.selectRoom(room)}>{room.name} </li>))}
         </h1>
         <div>
         <form onSubmit= {this.createRoom} >

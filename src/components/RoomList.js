@@ -40,7 +40,7 @@ class RoomList extends Component {
     this.props.activeRoom(room);
   }
 
-   render() {   
+   render() {
       return(
         <div>
         <h1>{this.state.rooms.map((room) =>( // map data to name and key on to constant to be rendered

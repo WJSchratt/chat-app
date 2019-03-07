@@ -28,12 +28,12 @@ class MessageList extends Component {
 
 
       render(){
-        console.log(this.state.messages)
-        const activeRoom = this.props.activeRoom
+        const activeRoomKey = this.props.activeRoomKey
+        console.log(this.props.activeRoom);
         return(
           <div>
           <h1>{this.state.messages.map((message) => {
-            if(message.roomId === activeRoom){
+            if(message.roomId === activeRoomKey){
               return(
                 <li key={message.key}>{message.username}: {message.content}</li>);}})}
           </h1>

@@ -33,7 +33,7 @@ class App extends Component {
         <header className="App-header">
         <RoomList firebase={ firebase } activeRoom={this.activeRoom}>
         </RoomList>
-        <MessageList firebase={ firebase } activeRoom={this.activeRoom.key}>
+        <MessageList firebase={ firebase } activeRoomKey={this.state.activeRoom.key}>
         </MessageList>
         </header>
       </div>

@@ -30,6 +30,7 @@ class RoomList extends Component {
     this.roomsRef.push({
     name: this.state.name
   });
+  this.state.name = ""
   }
 
   handleChange (e) {

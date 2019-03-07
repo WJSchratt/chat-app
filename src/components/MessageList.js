@@ -29,7 +29,7 @@ class MessageList extends Component {
 
       render(){
         const activeRoomKey = this.props.activeRoomKey
-        console.log(this.props.activeRoom);
+      
         return(
           <div>
           <h1>{this.state.messages.map((message) => {

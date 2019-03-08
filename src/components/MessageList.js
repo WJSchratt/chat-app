@@ -15,6 +15,8 @@ class MessageList extends Component {
     };
 
     this.messagesRef = this.props.firebase.database().ref('messages');
+    this.messageHandle = this.messageHandle.bind(this);
+    this.createMessage = this.createMessage.bind(this);
   }
 
     componentDidMount() {
@@ -25,11 +27,28 @@ class MessageList extends Component {
      });
    }
 
+    createMessage (e) {
+      e.preventDefault();
+      this.messagesRef.push({
+      username: this.state.username,
+      content: this.state.content,
+      sentAt: this.state.sentAt,
+      roomId: this.state.roomId
+      });
+      this.setState({ username: "", content: "", sentAt: "", roomId: ""});
+   }
+
+    messageHandle (e) {
+      this.setState({ username: this.props.user.displayName,
+      content: e.target.value,
+      sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
+      roomId: this.props.activeRoomKey });
+    }
 
 
       render(){
         const activeRoomKey = this.props.activeRoomKey
-      
+
         return(
           <div>
           <h1>{this.state.messages.map((message) => {
@@ -37,6 +56,12 @@ class MessageList extends Component {
               return(
                 <li key={message.key}>{message.username}: {message.content}</li>);}})}
           </h1>
+          <h2>
+          <form onSubmit= {this.createMessage} >
+          <input type="text" value={this.state.content} placeholder="message" onChange={this.messageHandle}/>
+          <input type="submit" value="Lets do it " />
+          </form>
+          </h2>
           </div>
         );
       }

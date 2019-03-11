@@ -15,6 +15,7 @@ class RoomList extends Component {
     this.createRoom = this.createRoom.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.selectRoom = this.selectRoom.bind(this)
+    this.deleteRooms = this.deleteRooms.bind(this)
   }
 
   componentDidMount() {
@@ -37,6 +38,13 @@ class RoomList extends Component {
   this.setState({ name: e.target.value })
   }
 
+  deleteRooms(index) {
+    const room = this.state.rooms.slice();
+    room.splice(index,1,);
+    this.setState ({ room: this.state.rooms })
+    console.log(room)
+  }
+
   selectRoom(room) {
     this.props.activeRoom(room);
   }
@@ -44,8 +52,8 @@ class RoomList extends Component {
    render() {
       return(
         <div>
-        <h1>{this.state.rooms.map((room) =>( // map data to name and key on to constant to be rendered
-          <li key={room.key} onClick={() => this.selectRoom(room)}>{room.name} </li>))}
+        <h1>{this.state.rooms.map((room, index) =>( // map data to name and key on to constant to be rendered
+          <li key={room.key} index={index} onClick={() => this.selectRoom(room)}><button  onClick ={() => this.deleteRooms(index)}>delete</button>{room.name}  </li>))}
         </h1>
         <div>
         <form onSubmit= {this.createRoom} >

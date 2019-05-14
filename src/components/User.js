@@ -32,7 +32,6 @@ class User extends Component{
 
 
     render(){
-        console.log(this.state.userName)
       return(
         <div>
         <button onClick={() => this.signIn()}>Sign in</button>

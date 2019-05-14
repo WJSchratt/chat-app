@@ -63,7 +63,7 @@ class RoomList extends Component {
         <div>
         <form onSubmit= {this.createRoom}>
         <input type="text" value={this.state.name} placeholder="Please type a Word" onChange={this.handleChange}/>
-        <input type="submit" value="Lets do it " />
+        <input type="submit" value="Add A Room" />
         </form>
         </div>
         </div>

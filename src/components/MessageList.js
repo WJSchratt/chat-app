@@ -29,6 +29,10 @@ class MessageList extends Component {
 
     createMessage (e) {
       e.preventDefault();
+      if (this.props.activeRoomKey == null){
+        window.alert("pls choose a room")
+      }
+      else {
       this.messagesRef.push({
       username: this.state.username,
       content: this.state.content,
@@ -36,13 +40,16 @@ class MessageList extends Component {
       roomId: this.state.roomId
       });
       this.setState({ username: "", content: "", sentAt: "", roomId: ""});
-   }
+   }}
+
 
     messageHandle (e) {
-      this.setState({ username: this.props.user.displayName,
+      this.setState({
+      username: this.props.user.displayName,
       content: e.target.value,
       sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
       roomId: this.props.activeRoomKey });
+
     }
 
 

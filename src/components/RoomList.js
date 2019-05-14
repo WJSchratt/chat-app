@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
 import './RoomList.css';
+import { Container, Section, Heading } from 'react-bulma-components';
 
 class RoomList extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class RoomList extends Component {
     this.roomsRef.push({
     name: this.state.name
   });
-  this.state.name = ""
+  this.seState({ name : "" })
   }
 
   handleChange (e) {
@@ -55,18 +56,32 @@ class RoomList extends Component {
 
    render() {
       return(
-        <div className="test">
-        <p>{this.state.rooms.map((room, index) =>( // map data to name and key on to constant to be rendered
-          <li key={room.key} index={index} onClick={() => this.selectRoom(room)}>{room.name}  </li>))}
-        </p>
-        <h1>Well Hello</h1>
         <div>
-        <form onSubmit= {this.createRoom}>
-        <input type="text" value={this.state.name} placeholder="Please type a Word" onChange={this.handleChange}/>
-        <input type="submit" value="Add A Room" />
-        </form>
+          <Section size="large">
+            <Container>
+              <p className="bd-notification is-success">
+          <Heading size={5} renderAs="p">
+        <div className="test">
+          <p className="roomlist">{this.state.rooms.map((room, index) =>( // map data to name and key on to constant to be rendered
+            <li key={room.key} index={index} onClick={() => this.selectRoom(room)}>{room.name}  </li>))}
+          </p>
+            <h1>Well Hello</h1>
+          <div>
+              <form onSubmit= {this.createRoom}>
+                <input type="text" value={this.state.name} placeholder="Please type a Word" onChange={this.handleChange}/>
+                <input type="submit" value="Add A Room" />
+              </form>
+            </div>
         </div>
-        </div>
+        </Heading>
+          <Heading subtitle renderAs="p">
+            Container
+          </Heading>
+        </p>
+      </Container>
+      </Section>
+      </div>
+
       );
   }
 }

@@ -44,12 +44,20 @@ class MessageList extends Component {
 
 
     messageHandle (e) {
+      if(this.props.user == null){
+        this.setState({
+        username: "guest",
+        content: e.target.value,
+        sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
+        roomId: this.props.activeRoomKey});
+      }
+      else {
       this.setState({
       username: this.props.user.displayName,
       content: e.target.value,
       sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
       roomId: this.props.activeRoomKey });
-
+    }
     }
 
 

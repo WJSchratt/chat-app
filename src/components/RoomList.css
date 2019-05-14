@@ -1,4 +1,5 @@
-.test li {
- font-size: 20pt;
- color: blue;
+
+.container {
+  display: flex;
+  flex-direction: column;
 }

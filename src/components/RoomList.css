@@ -1,5 +1,9 @@
 
-.container {
-  display: flex;
-  flex-direction: column;
+tr {
+  text-align: center;
+  width: 100%;
+}
+table {
+  min-height:500px;
+  max-height:500px;
 }

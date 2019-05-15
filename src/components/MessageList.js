@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
+import './MessageList.css';
 
 class MessageList extends Component {
   constructor(props) {
@@ -65,19 +66,27 @@ class MessageList extends Component {
         const activeRoomKey = this.props.activeRoomKey
 
         return(
-          <div>
-          <h1>{this.state.messages.map((message) => {
-            if(message.roomId === activeRoomKey){
-              return(
-                <li key={message.key}>{message.username}: {message.content}</li>);}})}
-          </h1>
-          <h2>
-          <form onSubmit= {this.createMessage} >
-          <input type="text" value={this.state.content} placeholder="message" onChange={this.messageHandle}/>
-          <input type="submit" value="Lets do it " />
-          </form>
-          </h2>
-          </div>
+              <div className="message">
+              <article class="message is-dark">
+                <h1 class="message-header is-size-4">
+                {this.props.name}
+                </h1>
+              <div class="message-body">
+                <ul>{this.state.messages.map((message) => {
+                  if(message.roomId === activeRoomKey){
+                    return(
+                      <tr key={message.key}>{message.username}: {message.content}</tr>);}})}
+                </ul>
+                  <span>
+                    <form onSubmit= {this.createMessage} >
+                      <input type="text" value={this.state.content} placeholder="message" onChange={this.messageHandle}/>
+                      <input type="submit" value="Lets do it " />
+                    </form>
+                  </span>
+                </div>
+                </article>
+                </div>
+
         );
       }
 }

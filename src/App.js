@@ -37,15 +37,32 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>{this.state.activeRoom.name || "Select A Room"}</h1>
-        <header className="App-header">
-        <RoomList firebase={ firebase } activeRoom={this.activeRoom}>
+      <section class="hero is-primary">
+      <div class="hero-body">
+      <div class="container">
+      <p class="title">Chat-App</p>
+      <p class="subtitle">Responsive chat-app demo powered through react. Firebase is providing the Data.</p>
+      </div>
+      </div>
+      </section>
+        <section className="Container">
+        <div class="columns is-gapless ">
+        <div class="column is-one-quarter">
+        <RoomList firebase={ firebase } activeRoom={this.activeRoom} name={this.state.activeRoom.name}>
         </RoomList>
-        <MessageList firebase={ firebase } activeRoomKey={this.state.activeRoom.key} user={this.state.user}>
+        </div>
+        <div class="column is-three-quarters">
+        <MessageList firebase={ firebase } name={this.state.activeRoom.name} activeRoomKey={this.state.activeRoom.key} user={this.state.user}>
         </MessageList>
+        </div>
+        </div>
+        <div class="columns"> 
+        <div class="column">
         <User firebase={ firebase } setUser={this.setUser} user={this.state.user}>
         </User>
-        </header>
+        </div>
+        </div>
+        </section>
       </div>
     );
   }

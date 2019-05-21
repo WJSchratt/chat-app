@@ -76,7 +76,7 @@ class MessageList extends Component {
                   if(message.roomId === activeRoomKey){
                     return(
                       <tr key={message.key}>{message.username}: {message.content}</tr>);}})}
-                </ul>
+                </ul> 
                   <span>
                     <form onSubmit= {this.createMessage} >
                       <input type="text" value={this.state.content} placeholder="message" onChange={this.messageHandle}/>

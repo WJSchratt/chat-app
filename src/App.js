@@ -41,7 +41,7 @@ class App extends Component {
       <div class="hero-body">
       <div class="container">
       <p class="title">Chat-App</p>
-      <p class="subtitle">Responsive chat-app demo powered through react. Firebase is providing the Data.</p>
+      <p class="subtitle">Responsive chat-app demo powered through react and using firebase as the database.</p>
       </div>
       </div>
       </section>
@@ -56,7 +56,7 @@ class App extends Component {
         </MessageList>
         </div>
         </div>
-        <div class="columns"> 
+        <div class="columns">
         <div class="column">
         <User firebase={ firebase } setUser={this.setUser} user={this.state.user}>
         </User>
